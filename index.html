@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f85606">
+<title>Easy Shop — অনলাইন শপ</title>
+<style>
+:root{--orange:#f85606;--ink:#222;--muted:#757575;--bg:#f5f5f5;--line:#eee;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali",Arial,sans-serif}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}
+.top{background:#fff3ed;color:#8a3510;text-align:center;padding:7px 12px;font-size:12px}
+header{background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 2px 8px #00000008}
+.head{max-width:1120px;margin:auto;padding:14px 16px;display:flex;gap:16px;align-items:center}
+.logo{font-weight:900;font-size:24px;color:var(--orange);white-space:nowrap;letter-spacing:-1px}.logo span{color:#222}
+.search{display:flex;flex:1;background:#f5f5f5;border-radius:9px;overflow:hidden;border:1px solid #eee}.search input{min-width:0;width:100%;padding:12px;border:0;outline:0;background:transparent}.search button{background:var(--orange);color:#fff;padding:0 18px;font-weight:700}
+.head-actions{display:flex;gap:12px;align-items:center}.icon-btn{background:#fff;border:1px solid #eee;border-radius:9px;padding:9px 11px;font-size:14px;white-space:nowrap}
+nav{max-width:1120px;margin:auto;padding:0 16px 12px;display:flex;gap:8px;overflow:auto}nav a{font-size:13px;background:#fff7f2;border:1px solid #ffe1d1;padding:8px 12px;border-radius:20px;white-space:nowrap}
+main{max-width:1120px;margin:18px auto;padding:0 16px}
+.hero{display:grid;grid-template-columns:1.3fr .7fr;gap:14px}
+.banner{border-radius:16px;min-height:220px;padding:30px;background:linear-gradient(120deg,#fff0e6,#ffd7bf);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;overflow:hidden;position:relative}
+.banner:after{content:"🛍️";position:absolute;right:28px;bottom:12px;font-size:100px;opacity:.9;transform:rotate(-8deg)}
+.banner h1{font-size:clamp(27px,4vw,42px);line-height:1.15;margin:0 0 10px;max-width:440px}.banner p{margin:0 0 18px;color:#78432a}.primary{background:var(--orange);color:#fff;padding:11px 17px;border-radius:8px;font-weight:750;display:inline-block}
+.side-banner{border-radius:16px;padding:24px;background:linear-gradient(135deg,#252525,#555);color:white;display:flex;flex-direction:column;justify-content:center}.side-banner .tag{color:#ffc6a7;font-size:12px;font-weight:800;text-transform:uppercase}.side-banner h2{font-size:25px;line-height:1.2;margin:8px 0}.side-banner p{color:#ddd;font-size:13px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.quick div{background:#fff;border:1px solid var(--line);padding:13px;border-radius:12px;font-size:13px;display:flex;gap:9px;align-items:center}.quick b{display:block;font-size:13px}.quick small{color:var(--muted)}
+.section{margin:22px 0}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.section h2{font-size:21px;margin:0}.section-head span{color:var(--muted);font-size:12px}
+.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.cat{background:#fff;border-radius:12px;padding:16px 8px;text-align:center;border:1px solid var(--line);font-size:13px}.cat .emoji{font-size:27px;display:block;margin-bottom:8px}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.product{background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;transition:.15s}.product[data-card-link]{cursor:pointer}.product[data-card-link]:focus-visible{outline:3px solid var(--orange);outline-offset:2px}.product:hover{transform:translateY(-2px);box-shadow:0 8px 22px #0000000b}.prod-img{height:170px;background:#fff3ed;display:grid;place-items:center;font-size:65px;position:relative}.prod-img img{width:100%;height:100%;object-fit:cover}.discount{position:absolute;top:9px;left:9px;background:#fff0e7;color:var(--orange);font-size:11px;font-weight:800;padding:5px 7px;border-radius:5px}.prod-info{padding:12px}.prod-info h3{font-size:14px;font-weight:600;margin:0 0 8px;min-height:40px}.price{font-weight:850;color:var(--orange);font-size:17px}.old{font-size:12px;color:#999;text-decoration:line-through;margin-left:6px}.rating{font-size:12px;color:#e9a000;margin:7px 0}.prod-actions{display:flex;gap:7px}.prod-actions a,.prod-actions button{flex:1;text-align:center;padding:9px 5px;border-radius:7px;font-size:12px;font-weight:750}.details{background:#fff1e9;color:var(--orange)}.buy{background:var(--orange);color:#fff}
+.empty{grid-column:1/-1;background:#fff;padding:25px;text-align:center;border-radius:12px;color:#777}
+footer{margin-top:35px;background:#242424;color:#eee;padding:28px 16px}.foot{max-width:1120px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:20px}.foot p,.foot a{font-size:13px;color:#c8c8c8}.foot h3{margin-top:0}.copyright{max-width:1120px;margin:20px auto 0;border-top:1px solid #444;padding-top:15px;color:#aaa;font-size:12px}
+.modal-bg{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:16px;z-index:30}.modal{background:white;border-radius:16px;padding:22px;width:min(480px,100%);max-height:90vh;overflow:auto}.modal h2{margin-top:0}.form-row{display:grid;gap:6px;margin:12px 0}.form-row input,.form-row textarea,.form-row select{border:1px solid #ddd;border-radius:8px;padding:11px;width:100%}.close{float:right;background:#f5f5f5;border-radius:8px;padding:5px 10px}
+@media(max-width:760px){.head{gap:9px;flex-wrap:wrap}.logo{font-size:22px}.search{order:3;flex-basis:100%}.head-actions{margin-left:auto}.hero{grid-template-columns:1fr}.banner{min-height:210px}.side-banner{min-height:130px}.quick{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.prod-img{height:145px}.prod-info{padding:10px}.prod-info h3{font-size:13px}.foot{grid-template-columns:1fr 1fr}.foot>div:first-child{grid-column:1/-1}}
+@media(min-width:761px) and (max-width:980px){.products{grid-template-columns:repeat(3,1fr)}.categories{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="top">🇧🇩 বাংলাদেশজুড়ে ডেলিভারি • নিরাপদে কেনাকাটা করুন • Easy Shop</div>
+<header>
+  <div class="head">
+    <a class="logo" href="index.html">Easy <span>Shop.</span></a>
+    <form class="search" id="searchForm"><input id="searchInput" placeholder="আপনি কী খুঁজছেন?" aria-label="পণ্য খুঁজুন"><button>খুঁজুন</button></form>
+    <div class="head-actions"><button class="icon-btn" id="cartBtn">🛒 কার্ট <b id="cartCount">0</b></button><a class="icon-btn" href="admin.html">⚙️ অ্যাডমিন</a></div>
+  </div>
+  <nav><a href="#products">সব পণ্য</a><a href="#categories">ক্যাটাগরি</a><a href="#products" data-filter="ফ্যাশন">ফ্যাশন</a><a href="#products" data-filter="ইলেকট্রনিক্স">ইলেকট্রনিক্স</a><a href="#products" data-filter="ঘর">ঘর ও লাইফস্টাইল</a><a href="#footer">যোগাযোগ</a></nav>
+</header>
+<main>
+  <section class="hero">
+    <div class="banner"><h1>পছন্দের পণ্য,<br>সেরা দামে!</h1><p>সহজ কেনাকাটা, আপনার হাতের মুঠোয়।</p><a class="primary" href="#products">এখনই কেনাকাটা করুন →</a></div>
+    <div class="side-banner"><span class="tag">Easy Shop deals</span><h2>প্রতিদিনের<br>দারুণ অফার</h2><p>পছন্দের পণ্য খুঁজুন এবং সহজেই অর্ডার করুন।</p><a class="primary" href="#products">অফার দেখুন</a></div>
+  </section>
+  <section class="quick">
+    <div>🚚 <span><b>সারা দেশে ডেলিভারি</b><small>আপনার ঠিকানায়</small></span></div>
+    <div>💳 <span><b>সহজ অর্ডার</b><small>ফোনে অর্ডার নিশ্চিত</small></span></div>
+    <div>🛡️ <span><b>নিরাপদ কেনাকাটা</b><small>স্বচ্ছ পণ্যের তথ্য</small></span></div>
+    <div>💬 <span><b>কাস্টমার সাপোর্ট</b><small>সাহায্য পেতে যোগাযোগ</small></span></div>
+  </section>
+  <section class="section" id="categories">
+    <div class="section-head"><h2>ক্যাটাগরি অনুযায়ী কিনুন</h2><span>আপনার পছন্দ বেছে নিন</span></div>
+    <div class="categories">
+      <a class="cat" href="#products" data-filter="ফ্যাশন"><span class="emoji">👕</span>ফ্যাশন</a>
+      <a class="cat" href="#products" data-filter="ইলেকট্রনিক্স"><span class="emoji">🎧</span>ইলেকট্রনিক্স</a>
+      <a class="cat" href="#products" data-filter="ঘর"><span class="emoji">🏠</span>ঘর ও লাইফস্টাইল</a>
+      <a class="cat" href="#products" data-filter="সৌন্দর্য"><span class="emoji">✨</span>সৌন্দর্য</a>
+      <a class="cat" href="#products" data-filter="ব্যাগ"><span class="emoji">🎒</span>ব্যাগ ও অ্যাক্সেসরিজ</a>
+      <a class="cat" href="#products" data-filter="অন্যান্য"><span class="emoji">🎁</span>অন্যান্য</a>
+    </div>
+  </section>
+  <section class="section" id="products">
+    <div class="section-head"><h2 id="productHeading">জনপ্রিয় পণ্য</h2><span id="productCount"></span></div>
+    <div class="products" id="productGrid"></div>
+  </section>
+</main>
+<footer id="footer"><div class="foot">
+  <div><a class="logo" href="index.html">Easy <span style="color:#fff">Shop.</span></a><p>আপনার অনলাইন কেনাকাটার সহজ ঠিকানা। পণ্যের তথ্য, দাম এবং অর্ডারের পদ্ধতি দেখে কিনুন।</p></div>
+  <div><h3>দ্রুত লিংক</h3><p><a href="#products">সব পণ্য</a></p><p><a href="admin.html">অ্যাডমিন প্যানেল</a></p><p><a href="#categories">ক্যাটাগরি</a></p></div>
+  <div><h3>যোগাযোগ</h3><p>ফোন/WhatsApp: আপনার নম্বর যোগ করুন</p><p>ইমেইল: আপনার ইমেইল যোগ করুন</p><p>ঢাকা, বাংলাদেশ</p></div>
+</div><div class="copyright">© 2026 Easy Shop. All rights reserved. নমুনা ওয়েবসাইট—প্রকাশের আগে নিজের যোগাযোগের তথ্য যোগ করুন।</div></footer>
+<div class="modal-bg" id="modalBg"><div class="modal" id="modal"></div></div>
+<script>(function(){let d={storeName:"Easy Shop",announcement:"🇧🇩 বাংলাদেশজুড়ে ডেলিভারি • নিরাপদে কেনাকাটা করুন • Easy Shop",heroTitle:"পছন্দের পণ্য, সেরা দামে!",heroText:"সহজ কেনাকাটা, আপনার হাতের মুঠোয়।",bannerTitle:"প্রতিদিনের দারুণ অফার",bannerText:"পছন্দের পণ্য খুঁজুন এবং সহজেই অর্ডার করুন।",phone:"আপনার নম্বর যোগ করুন",whatsapp:"",email:"আপনার ইমেইল যোগ করুন",address:"ঢাকা, বাংলাদেশ",primary:"#f85606",background:"#f5f5f5",bannerImage:"",bannerLink:"#products"};try{d={...d,...JSON.parse(localStorage.getItem("easyshop_settings")||"{}")}}catch(e){}document.documentElement.style.setProperty("--orange",d.primary);document.documentElement.style.setProperty("--bg",d.background);let q=s=>document.querySelector(s);if(q(".top"))q(".top").textContent=d.announcement;if(q(".logo"))q(".logo").textContent=d.storeName;if(q(".banner h1"))q(".banner h1").textContent=d.heroTitle;if(q(".banner p"))q(".banner p").textContent=d.heroText;if(q(".side-banner h2"))q(".side-banner h2").textContent=d.bannerTitle;if(q(".side-banner p"))q(".side-banner p").textContent=d.bannerText;if(q(".banner")&&d.bannerImage){q(".banner").style.backgroundImage='linear-gradient(90deg,#fff0e6dd,#ffd7bfaa),url("'+d.bannerImage.replace(/"/g,"%22")+'")';q(".banner").style.backgroundSize="cover";q(".banner").style.backgroundPosition="center"}if(q(".banner .primary"))q(".banner .primary").href=d.bannerLink||"#products";let c=q("footer .foot>div:last-child");if(c)c.innerHTML="<h3>যোগাযোগ</h3><p>ফোন/WhatsApp: "+d.phone+"</p><p>ইমেইল: "+d.email+"</p><p>"+d.address+"</p>"+(d.whatsapp?'<p><a href="'+d.whatsapp+'" target="_blank" rel="noopener">WhatsApp-এ যোগাযোগ</a></p>':"");document.title=d.storeName+" — অনলাইন শপ"})();</script>
+<script>
+const seedProducts=[
+{id:1,name:"প্রিমিয়াম কটন টি-শার্ট",category:"ফ্যাশন",price:450,oldPrice:600,emoji:"👕",description:"আরামদায়ক কটন টি-শার্ট। সাইজ ও রং অর্ডারের সময় নিশ্চিত করুন।",link:""},
+{id:2,name:"ওয়্যারলেস ব্লুটুথ ইয়ারবাড",category:"ইলেকট্রনিক্স",price:890,oldPrice:1200,emoji:"🎧",description:"দৈনন্দিন ব্যবহারের জন্য ওয়্যারলেস ইয়ারবাড।",link:""},
+{id:3,name:"স্টাইলিশ ব্যাকপ্যাক",category:"ব্যাগ",price:750,oldPrice:950,emoji:"🎒",description:"কাজ, পড়াশোনা ও ভ্রমণের জন্য ব্যবহারযোগ্য ব্যাকপ্যাক।",link:""},
+{id:4,name:"স্কিন কেয়ার সেট",category:"সৌন্দর্য",price:650,oldPrice:800,emoji:"🧴",description:"ব্যবহারের আগে উপাদান ও আপনার ত্বকের উপযোগিতা যাচাই করুন।",link:""},
+{id:5,name:"ডেস্ক ল্যাম্প",category:"ঘর",price:520,oldPrice:700,emoji:"💡",description:"পড়ার টেবিল ও কাজের জায়গার জন্য সুন্দর ডেস্ক ল্যাম্প।",link:""},
+{id:6,name:"স্টিল পানির বোতল",category:"অন্যান্য",price:320,oldPrice:400,emoji:"🧴",description:"দৈনন্দিন ব্যবহারের পানির বোতল।",link:""},
+{id:7,name:"সানগ্লাস",category:"ফ্যাশন",price:390,oldPrice:550,emoji:"🕶️",description:"ক্যাজুয়াল ব্যবহারের স্টাইলিশ সানগ্লাস।",link:""},
+{id:8,name:"মিনি ব্লুটুথ স্পিকার",category:"ইলেকট্রনিক্স",price:990,oldPrice:1300,emoji:"🔊",description:"ছোট আকারের পোর্টেবল স্পিকার।",link:""}
+];
+const get=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
+let products=get("easyshop_products",seedProducts), cart=get("easyshop_cart",[]);
+let filter="", search="";
+const money=n=>"৳"+Number(n||0).toLocaleString("en-US");
+function save(){localStorage.setItem("easyshop_products",JSON.stringify(products));localStorage.setItem("easyshop_cart",JSON.stringify(cart));}
+function render(){
+ const list=products.filter(p=>(!filter||(p.category||"").includes(filter))&&(`${p.name} ${p.category} ${p.description}`.toLowerCase().includes(search.toLowerCase())));
+ document.getElementById("productHeading").textContent=filter?filter+" — পণ্য":search?"সার্চের ফলাফল":"জনপ্রিয় পণ্য";
+ document.getElementById("productCount").textContent=list.length+"টি পণ্য";
+ document.getElementById("cartCount").textContent=cart.reduce((s,x)=>s+x.qty,0);
+ document.getElementById("productGrid").innerHTML=list.length?list.map(p=>`<article class="product" ${p.cardLink?`data-card-link="${esc(p.cardLink)}" role="link" tabindex="0" aria-label="${esc(p.name)} খুলুন"`:""}><a href="${esc(p.detailsLink||(`details.html?id=${p.id}`))}"><div class="prod-img">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}">`:p.emoji||"🛍️"}${p.oldPrice?`<span class="discount">-${Math.max(1,Math.round((1-p.price/p.oldPrice)*100))}%</span>`:""}</div></a><div class="prod-info"><h3>${esc(p.name)}</h3><div class="price">${money(p.price)} ${p.oldPrice?`<span class="old">${money(p.oldPrice)}</span>`:""}</div><div class="rating">★★★★★ <span style="color:#999">নমুনা</span></div><div class="prod-actions"><a class="details" href="${esc(p.detailsLink||(`details.html?id=${p.id}`))}" ${p.detailsLink?'target="_blank" rel="noopener"':''}>বিস্তারিত দেখুন</a>${p.link?`<a class="buy" href="${esc(p.link)}" target="_blank" rel="noopener">Buy Now ↗</a>`:`<button class="buy" onclick="buy(${p.id})">কার্টে কিনুন</button>`}</div></div></article>`).join(""):`<div class="empty">কোনো পণ্য পাওয়া যায়নি। অন্য শব্দ দিয়ে খুঁজুন।</div>`;
+}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function buy(id){let p=products.find(x=>x.id===id);if(!p)return;cart.push({id:p.id,name:p.name,price:p.price,qty:1});save();render();openCart();}
+function openCart(){
+ const bg=document.getElementById("modalBg"),m=document.getElementById("modal");
+ if(!cart.length){m.innerHTML='<button class="close" onclick="closeModal()">বন্ধ</button><h2>আপনার কার্ট</h2><p>কার্ট খালি আছে।</p>';bg.style.display="flex";return}
+ m.innerHTML=`<button class="close" onclick="closeModal()">বন্ধ</button><h2>🛒 আপনার কার্ট</h2><div>${cart.map((x,i)=>`<div style="display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #eee"><span>${esc(x.name)} × ${x.qty}</span><b>${money(x.price*x.qty)}</b><button onclick="removeCart(${i})" style="color:#d33;background:#fff">✕</button></div>`).join("")}</div><h3>মোট: ${money(cart.reduce((s,x)=>s+x.price*x.qty,0))}</h3><div class="form-row"><label>আপনার নাম</label><input id="buyerName" placeholder="নাম লিখুন"></div><div class="form-row"><label>মোবাইল নম্বর</label><input id="buyerPhone" placeholder="01XXXXXXXXX" inputmode="tel"></div><div class="form-row"><label>ডেলিভারি ঠিকানা</label><textarea id="buyerAddress" placeholder="সম্পূর্ণ ঠিকানা" rows="2"></textarea></div><button class="primary" style="width:100%" onclick="placeOrder()">অর্ডার তথ্য তৈরি করুন</button><p style="font-size:12px;color:#777">এটি ডেমো অর্ডার ফর্ম। অর্ডার সংরক্ষণ/পাঠাতে WhatsApp নম্বর বা সার্ভার যুক্ত করতে হবে।</p>`;
+ bg.style.display="flex";
+}
+function removeCart(i){cart.splice(i,1);save();render();openCart()}
+function placeOrder(){const n=document.getElementById("buyerName").value.trim(),p=document.getElementById("buyerPhone").value.trim(),a=document.getElementById("buyerAddress").value.trim();if(!n||!p||!a){alert("নাম, মোবাইল নম্বর ও ঠিকানা পূরণ করুন।");return}const summary=cart.map(x=>`${x.name} x${x.qty} = ${money(x.price*x.qty)}`).join("\\n");const msg=`Easy Shop অর্ডার\\nনাম: ${n}\\nফোন: ${p}\\nঠিকানা: ${a}\\n${summary}\\nমোট: ${money(cart.reduce((s,x)=>s+x.price*x.qty,0))}`;document.getElementById("modal").innerHTML=`<button class="close" onclick="closeModal()">বন্ধ</button><h2>অর্ডারের তথ্য তৈরি হয়েছে</h2><p>নিচের তথ্য কপি করে আপনার দোকানের WhatsApp/মেসেঞ্জারে পাঠান।</p><textarea rows="8" style="width:100%;padding:10px" id="orderText">${msg}</textarea><button class="primary" style="width:100%;margin-top:10px" onclick="navigator.clipboard.writeText(document.getElementById('orderText').value).then(()=>alert('কপি হয়েছে')).catch(()=>alert('টেক্সট সিলেক্ট করে কপি করুন'))">অর্ডার কপি করুন</button>`;cart=[];save();render();}
+function closeModal(){document.getElementById("modalBg").style.display="none"}
+document.getElementById("productGrid").addEventListener("click",e=>{const card=e.target.closest(".product[data-card-link]");if(!card||e.target.closest("a,button,input,textarea,select"))return;const url=card.dataset.cardLink;if(url)window.location.href=url});document.getElementById("productGrid").addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches(".product[data-card-link]")){e.preventDefault();window.location.href=e.target.dataset.cardLink}});
+document.getElementById("searchForm").addEventListener("submit",e=>{e.preventDefault();search=document.getElementById("searchInput").value.trim();filter="";render();document.getElementById("products").scrollIntoView({behavior:"smooth"})});
+document.querySelectorAll("[data-filter]").forEach(a=>a.addEventListener("click",()=>{filter=a.dataset.filter;search="";document.getElementById("searchInput").value="";render()}));
+document.getElementById("cartBtn").addEventListener("click",openCart);
+document.getElementById("modalBg").addEventListener("click",e=>{if(e.target.id==="modalBg")closeModal()});
+render();
+</script>
+</body></html>
